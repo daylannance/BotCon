@@ -1,0 +1,44 @@
+Initialize engine version: 5.1.0f3 (ec70b008569d)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 10.0]
+    Renderer: Mobile Intel(R) 4 Series Express Chipset Family (ID=0x2a42)
+    Vendor:   Intel
+    VRAM:     128 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\IronPythonTrials\BotCon_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\IronPythonTrials\BotCon_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\IronPythonTrials\BotCon_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\IronPythonTrials\BotCon_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\IronPythonTrials\BotCon_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\BotCon.dll (this message is harmless)
+Loading C:\IronPythonTrials\BotCon_Data\Managed\BotCon.dll into Unity Child Domain
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\DLLProjectForIronPython.dll (this message is harmless)
+Loading C:\IronPythonTrials\BotCon_Data\Managed\DLLProjectForIronPython.dll into Unity Child Domain
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\IronPython.dll (this message is harmless)
+Loading C:\IronPythonTrials\BotCon_Data\Managed\IronPython.dll into Unity Child Domain
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\IronPython.Modules.dll (this message is harmless)
+Loading C:\IronPythonTrials\BotCon_Data\Managed\IronPython.Modules.dll into Unity Child Domain
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\Microsoft.Dynamic.dll (this message is harmless)
+Loading C:\IronPythonTrials\BotCon_Data\Managed\Microsoft.Dynamic.dll into Unity Child Domain
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\Microsoft.Scripting.Core.dll (this message is harmless)
+Loading C:\IronPythonTrials\BotCon_Data\Managed\Microsoft.Scripting.Core.dll into Unity Child Domain
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\Microsoft.Scripting.dll (this message is harmless)
+Loading C:\IronPythonTrials\BotCon_Data\Managed\Microsoft.Scripting.dll into Unity Child Domain
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\Microsoft.Scripting.Metadata.dll (this message is harmless)
+Loading C:\IronPythonTrials\BotCon_Data\Managed\Microsoft.Scripting.Metadata.dll into Unity Child Domain
+- Completed reload, in  0.337 seconds
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\System.Configuration.dll (this message is harmless)
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\System.Xml.dll (this message is harmless)
+Platform assembly: C:\IronPythonTrials\BotCon_Data\Managed\Mono.Security.dll (this message is harmless)
