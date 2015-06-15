@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: e26f598aa4c109b40889c9fb0653794f
-timeCreated: 1433952284
+timeCreated: 1434184773
 licenseType: Free
 PluginImporter:
   serializedVersion: 1
   iconMap: {}
-  executionOrder: {}
+  executionOrder:
+    IronPythonTest.MyBehaviour: 200
   isPreloaded: 0
   platformData:
     Any:

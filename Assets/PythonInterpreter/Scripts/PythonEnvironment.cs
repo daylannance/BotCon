@@ -3,6 +3,7 @@ using System.Text;
 using System.IO;
 using Microsoft.Scripting.Hosting;
 using IronPython.Hosting;
+using BotCon;
 
 /// <summary>
 /// A python runtime environment.
@@ -10,6 +11,9 @@ using IronPython.Hosting;
 /// </summary>
 public class PythonEnvironment
 {
+	public IGPI igpi;
+	public string thread_command;
+	public string m_pyOutput = "";
     public struct CommandResult
     {
         public string output;
@@ -26,7 +30,23 @@ public class PythonEnvironment
         m_pythonEngine = Python.CreateEngine();
         m_scriptScope = m_pythonEngine.CreateScope();
     }
-
+	public void RunThreadCommand()
+	{
+		CommandResult result = RunCommand (thread_command);	
+		SetPyOutput(result);
+	}
+	public void SetPyOutput(PythonEnvironment.CommandResult result)
+	{
+		if (!string.IsNullOrEmpty(result.output))
+		{
+			m_pyOutput += "Python output : " + result.output + System.Environment.NewLine;
+		}
+		if (result.exception != null)
+		{
+			m_pyOutput += "Python exception : " + result.exception.Message;
+		}
+		BotCon.ComData.EngineToPyOutput = m_pyOutput; 
+	}
     public CommandResult RunCommand(string command)
     {
         CommandResult result = new CommandResult();

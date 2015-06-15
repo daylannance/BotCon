@@ -2,12 +2,15 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.IO;
+using System.Threading;
+using BotCon;
 
 /// <summary>
 /// A simple python behaviour that demonstrates how code can be ran in the runtime engine
 /// </summary>
-public class InGamePythonInterpreter : MonoBehaviour 
+public class IGPI : MonoBehaviour 
 {
+	public static IGPI interpreter;
 	public InputField consoleInput;
 	public Text consoleOutput;
 	public InputField scriptBodyField;
@@ -25,17 +28,18 @@ import UnityEngine
 import BotCon
 from UnityEngine import *
 from BotCon import *
-list = GameObject.FindSceneObjectsOfType(Transform)
+list = GameObject.FindSceneObjectsOfType(Test)
 print list";
 
 	// Use this for initialization
 	void Start () 
     {
+		interpreter = this;
         m_pyEnv = new PythonEnvironment();
+		m_pyEnv.igpi = this;
 		m_pyOutput = string.Empty;
 		PythonEnvironment.CommandResult result = m_pyEnv.RunCommand(INITIALIZATION_CODE);
-		string code = System.IO.File.ReadAllText(@"c:\IronPythonTrials\PythonScripts\Test.py");
-		result = m_pyEnv.RunCommand (code);
+		
 		if (!string.IsNullOrEmpty(result.output))
 		{
 			m_pyOutput += "Python output : " + result.output + System.Environment.NewLine;
@@ -62,6 +66,18 @@ print list";
 			}
 		}
 	}
+	public void SetPyOutput(PythonEnvironment.CommandResult result)
+	{
+		if (!string.IsNullOrEmpty(result.output))
+		{
+			m_pyOutput += "Python output : " + result.output + System.Environment.NewLine;
+		}
+		if (result.exception != null)
+		{
+			m_pyOutput += "Python exception : " + result.exception.Message;
+		}
+		consoleOutput.text = m_pyOutput;
+	}
 	public void LoadScript()
 	{
 		if(!string.IsNullOrEmpty(scriptNameField.text))
@@ -87,19 +103,31 @@ print list";
 	{
 		m_pyOutput = string.Empty;
 		m_pyCode = consoleInput.text;
-		PythonEnvironment.CommandResult result = m_pyEnv.RunCommand(m_pyCode);
-		if (!string.IsNullOrEmpty(result.output))
-		{
-			m_pyOutput += "Python output : " + result.output + System.Environment.NewLine;
-		}
-		if (result.exception != null)
-		{
-			m_pyOutput += "Python exception : " + result.exception.Message;
-		}
-		consoleOutput.text = m_pyOutput;
+		RunCommand (m_pyCode);
+		//PythonEnvironment.CommandResult result = m_pyEnv.RunCommand(m_pyCode);
+//		if (!string.IsNullOrEmpty(result.output))
+//		{
+//			m_pyOutput += "Python output : " + result.output + System.Environment.NewLine;
+//		}
+//		if (result.exception != null)
+//		{
+//			m_pyOutput += "Python exception : " + result.exception.Message;
+//		}
+//		consoleOutput.text = m_pyOutput;
+	}
+	
+	public void RunCommand(string command)
+	{
+		m_pyEnv.thread_command = command;
+		Thread thread = new Thread(m_pyEnv.RunThreadCommand);
+		thread.Start ();
 	}
 	void OnGUI()
 	{
+		if(!string.IsNullOrEmpty(BotCon.ComData.EngineToPyOutput))
+		{
+			consoleOutput.text = ComData.EngineToPyOutput;
+		}
 		//m_pyCode = GUI.TextArea(new Rect(50, 50, 600, 200), m_pyCode);
 //		if (GUI.Button(new Rect(50, 270, 80, 40), "Run"))
 //        {
