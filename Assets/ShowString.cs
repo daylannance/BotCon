@@ -11,6 +11,6 @@ public class ShowString : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		gText.text = ComData.PyToEngineCommands;
+		gText.text = ComData.PyToEngineCommands.ToString();
 	}
 }
