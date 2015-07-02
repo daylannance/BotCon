@@ -7,7 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public class Parser : MonoBehaviour {
 	
-	public Dictionary<string,GameObjectData> AllGameObjects = new Dictionary<string,GameObjectData>();
+	public static Dictionary<string,GameObjectData> AllGameObjects = new Dictionary<string,GameObjectData>();
 	// Use this for initialization
 	void Start () {
 		foreach(GameObject obj in FindObjectsOfType<GameObject>())
