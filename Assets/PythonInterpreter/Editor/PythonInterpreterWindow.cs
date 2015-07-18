@@ -4,6 +4,7 @@ using UnityEditor;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using BotCon;
 
 /// <summary>
 /// An editor window that introduces a python interpreter for interactive

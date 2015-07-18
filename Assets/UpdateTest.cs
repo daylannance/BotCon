@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using BotCon;
 
 public class UpdateTest : MonoBehaviour {
 

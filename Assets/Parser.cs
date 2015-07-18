@@ -3,25 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using BotCon;
 using UnityEngine;
+using System.Text;
+using System.Text.RegularExpressions;
 
 [System.Serializable]
 public class Parser : MonoBehaviour {
 	
 	public static Dictionary<string,GameObjectData> AllGameObjects = new Dictionary<string,GameObjectData>();
+	public string testCommand = "";
 	// Use this for initialization
 	void Start () {
 		foreach(GameObject obj in FindObjectsOfType<GameObject>())
 		{
-			GameObjectData data = new GameObjectData();
-			data.gameObject = obj;
-			AllGameObjects.Add (obj.GetInstanceID().ToString(),data);
-			if(obj.GetComponent<Rigidbody>())
+			if(obj.GetComponent<ShowID>())
 			{
-				data.rigidbody = obj.GetComponent<Rigidbody>();
+				GameObjectData data = new GameObjectData();
+				data.gameObject = obj;
+				AllGameObjects.Add (obj.GetInstanceID().ToString(),data);
+				if(obj.GetComponent<Rigidbody>())
+				{
+					data.rigidbody = obj.GetComponent<Rigidbody>();
+				}
+				data.id = obj.GetInstanceID();
+				ComData.AllGameObjects = AllGameObjects;
+				Debug.Log (AllGameObjects.Count);
 			}
-			data.id = obj.GetInstanceID();
-			ComData.AllGameObjects = AllGameObjects;
-			Debug.Log (AllGameObjects.Count);
 		}
 	}
 	
@@ -31,6 +37,10 @@ public class Parser : MonoBehaviour {
 		//MakeRequestedChanges();
 		UpdateAllGameObjectData ();
 		ProcessNextCommand();
+		if(!string.IsNullOrEmpty(testCommand))
+		{
+			IGPI.interpreter.RunCommand (testCommand + "()");
+		}
 	}
 	public void UpdateAllGameObjectData()
 	{
@@ -44,12 +54,24 @@ public class Parser : MonoBehaviour {
 		}
 		BotCon.ComData.AllGameObjects = AllGameObjects;	
 	}
+    void Log(string message)
+    {
+        IGPI.interpreter.Log(message);
+    }
 	public void ProcessNextCommand()
 	{
 		if(ComData.PyToEngineCommands.Count > 0)
 		{
-			var c = ComData.PyToEngineCommands.Dequeue();
-			c.cmd.Invoke(c.args);	
+            var c = ComData.PyToEngineCommands.Dequeue();
+            if (c.args != null)
+            {
+                if (c.cmd != null)
+                {
+                    c.cmd.Invoke(c.args);
+                }
+                else Log("No delegate was passed to Command object. This is likely do to invalid arguments.");
+            }
+            else Log(c.cmd.Target.ToString() + " has null or invalid arguments.");
 		}
 	}
 	public void ParseStringCommand(string command)
